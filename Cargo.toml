@@ -1,6 +1,13 @@
 [package]
 name = "fdump"
-version = "0.0.0"
+version = "1.0.0"
 edition = "2024"
 
 [dependencies]
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
