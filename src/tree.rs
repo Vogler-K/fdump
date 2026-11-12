@@ -16,6 +16,9 @@ impl RootFS {
             secret: false,
         }
     }
+    pub fn is_empty(&self) -> bool {
+        self.root.children.as_ref().map_or(true, |v| v.is_empty())
+    }
     pub fn add_to_tree(&mut self, path: &Path) {
         let names: Vec<String> = path
             .components()

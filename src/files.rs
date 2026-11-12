@@ -20,6 +20,9 @@ impl FileCollection {
             secret: false,
         }
     }
+    pub fn is_empty(&self) -> bool {
+        self.paths.is_empty()
+    }
     pub fn add_rel(&mut self, relative_path: String) {
         if let Ok(abs_path) = path::absolute(PathBuf::from(relative_path)) {
             self.paths.push(abs_path);
@@ -90,10 +93,11 @@ impl FileCollection {
         let base_path = Path::new(&base_str);
         for p in &self.paths {
             let rel = p.strip_prefix(base_path).unwrap_or(p);
-            let _ = writeln!(collector, " ==== {} ==== ", rel.display());
+            let _ = writeln!(collector, " >====> BEG {} <====< ", rel.display());
             if let Ok(content) = fs::read_to_string(p) {
-                let _ = writeln!(collector, "{content}\n");
+                let _ = writeln!(collector, "{content}");
             }
+            let _ = writeln!(collector, " <====< END {} <====> ", rel.display());
         }
         collector
     }

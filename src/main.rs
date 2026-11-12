@@ -9,7 +9,18 @@ fn main() {
     file_collection.squash();
     file_collection.expand();
     let root_fs = RootFS::from(&file_collection);
-    println!("{root_fs}{file_collection}");
+    if root_fs.is_empty() || root_fs.is_empty() {
+        println!(
+            "{} v{}\n{}\n\n{}\n{}",
+            env!("CARGO_PKG_NAME"),
+            env!("CARGO_PKG_VERSION"),
+            "Usage: fdump [-s] [file/folder ...]",
+            "Options:",
+            "    -s    hides all folder names outside your defined folder range"
+        );
+    } else {
+        println!("{root_fs}{file_collection}");
+    }
 }
 
 fn parse_args(args: Args) -> FileCollection {

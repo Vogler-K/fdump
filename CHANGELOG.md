@@ -5,3 +5,6 @@
 
 ## [v1.0.0] - Mon, Nov 9 2026
 - Added basic functionality, omitting and secrets
+
+## [v1.1.0] - Thu, Nov 12 2026
+- Added a default output with a help screen
